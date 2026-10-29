@@ -1,0 +1,56 @@
+# ForGrow — publishing framework (DRAFT until the founder approves it)
+# Every automated run must stay inside this file. Changing it = founder decision.
+status: draft_pending_approval   # production only; publishing disabled by founder 28.10
+timezone: Asia/Jerusalem
+
+accounts:
+  instagram: "@forgrow_social"     # must be an Instagram professional account (Business/Creator)
+  facebook: none                   # not in scope
+  scheduler: Metricool (via the Claude connector)
+
+units:
+  definition: "One unit = one idea, published once, in one format."
+  formats:
+    carousel: "3–10 slides, 1080x1350 JPEG (API limit: 10 items)"
+    single_image: "1 image, 1080x1350 JPEG"
+    reel: "motion graphics + Hebrew voice-over, 1080x1920 MP4, 15–60s"
+    story_sequence: "2–5 story frames about ONE idea = ONE unit, 1080x1920 JPEG"
+  per_day: {min: 3, default: 3, max: 5}   # founder, 28.10: at least 3 new ad creatives per day
+  feed_posts_per_day: {default: 1, max: 2}
+  scheduler_plan: "Metricool Free — max 20 scheduled posts per calendar month (founder, 28.10)"
+  monthly_publish_cap: 20   # production stays ≥3 creatives/day; only the best ~20/month get scheduled
+  publish_cadence: "about 5 per week; check remaining monthly quota before every scheduling"
+  never_two_of_same_visual_treatment_in_a_row: true
+
+schedule:          # proposed slots — founder to confirm
+  sun_thu: {story_sequence: "09:30", feed: "19:30"}
+  fri:     {story_sequence: "09:30", feed: "11:00"}
+  sat:     {story_sequence: "19:45", feed: "20:30"}   # after Shabbat — confirm or set to none
+  production_run: "07:07 daily — prepares content for the NEXT day (24h veto window in the Metricool planner)"
+
+current_focus: "ADS ONLY — problem → value → one action. Educational guides, polls and intro content are paused (founder, 28.10)."
+
+auto_publish_allowed:            # inside the framework, no per-post approval
+  - educational content in the 5 pillars below
+  - visual direction A, passes pipeline/qa.py
+  - illustrative examples labelled "דוגמה להמחשה"
+pillars:
+  - "קהל רלוונטי: מי, ולמה הוא מתאים לעסק"
+  - "מגילוי לעוקב: פרופיל, ביו, מוצמדים"
+  - "טיפוח הקשר: תוכן קבוע, סטוריז, תגובות"
+  - "מעוקב לפנייה: הצעה ברורה ודרך פנייה אחת"
+  - "מדידה: מה בודקים ומה אומר כל מדד"
+
+needs_founder_approval:          # never published automatically
+  - any claim about ForGrow capabilities, results or numbers
+  - customer results, testimonials, case studies
+  - paid promotion / ad budget
+  - replies, DMs, comments on other accounts
+  - naming competitors or real businesses
+  - music that is not original (pipeline/music.py) or from a source with a recorded licence covering the use
+  - ANY ad that describes ForGrow (all current ads) — produced daily, published only after approval
+  - starting paid promotion or spending budget (never implied by producing an ad)
+
+failure_policy:
+  retry: "at most 1 re-schedule per item, only after confirming it is not already scheduled"
+  alert: "Claude scheduled-task notification (push/email) + entry in content_log.csv"
