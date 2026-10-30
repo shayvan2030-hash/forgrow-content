@@ -155,6 +155,9 @@ KINDS["ad_theater"] = ad_theater
 from ads_extra5 import ad_receipt  # noqa: E402  (2026-10-29, run 3)
 
 KINDS["ad_receipt"] = ad_receipt
+from ads_extra6 import ad_radio  # noqa: E402  (2026-10-30)
+
+KINDS["ad_radio"] = ad_radio
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
