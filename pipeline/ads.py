@@ -164,6 +164,9 @@ KINDS["ad_garden"] = ad_garden
 from ads_extra8 import ad_lighthouse  # noqa: E402  (2026-11-01)
 
 KINDS["ad_lighthouse"] = ad_lighthouse
+from ads_extra9 import ad_keys  # noqa: E402  (2026-11-02)
+
+KINDS["ad_keys"] = ad_keys
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
