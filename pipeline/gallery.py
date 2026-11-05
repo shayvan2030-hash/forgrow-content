@@ -49,7 +49,7 @@ def build(site):
     for r in rows:
         label, cls = STATUS.get(r.get("status", ""), (r.get("status", ""), "info"))
         media = []
-        for f in [x for x in r["files"].split(";") if x]:
+        for f in [x for x in r["files"].replace(";", " ").split() if x]:
             src = html.escape(f)
             if f.endswith(".mp4"):
                 media.append(f'<video controls playsinline preload="metadata" src="{src}"></video>')
