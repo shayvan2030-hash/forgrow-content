@@ -176,6 +176,9 @@ KINDS["ad_mail"] = ad_mail
 from ads_extra12 import ad_magnet  # noqa: E402  (2026-11-05)
 
 KINDS["ad_magnet"] = ad_magnet
+from ads_extra13 import ad_ripples  # noqa: E402  (2026-11-06)
+
+KINDS["ad_ripples"] = ad_ripples
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
