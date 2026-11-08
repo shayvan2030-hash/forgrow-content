@@ -182,6 +182,9 @@ KINDS["ad_ripples"] = ad_ripples
 from ads_extra14 import ad_dominoes  # noqa: E402  (2026-11-07)
 
 KINDS["ad_dominoes"] = ad_dominoes
+from ads_extra15 import ad_pond  # noqa: E402  (2026-11-08)
+
+KINDS["ad_pond"] = ad_pond
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
