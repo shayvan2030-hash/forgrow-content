@@ -186,8 +186,10 @@ from ads_extra15 import ad_pond  # noqa: E402  (2026-11-08)
 
 KINDS["ad_pond"] = ad_pond
 from ads_extra16 import ad_busstop  # noqa: E402  (2026-11-09)
+from ads_extra17 import ad_table  # noqa: E402  (2026-11-10)
 
 KINDS["ad_busstop"] = ad_busstop
+KINDS["ad_table"] = ad_table
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
