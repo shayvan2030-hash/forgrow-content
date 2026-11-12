@@ -193,6 +193,9 @@ KINDS["ad_table"] = ad_table
 from ads_extra18 import ad_shelf  # noqa: E402  (2026-11-11)
 
 KINDS["ad_shelf"] = ad_shelf
+from ads_extra19 import ad_stamps  # noqa: E402  (2026-11-12)
+
+KINDS["ad_stamps"] = ad_stamps
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
