@@ -199,9 +199,9 @@ KINDS["ad_stamps"] = ad_stamps
 from ads_extra20 import ad_tailor  # noqa: E402  (2026-11-13)
 
 KINDS["ad_tailor"] = ad_tailor
-from ads_extra21 import ad_gift  # noqa: E402  (2026-11-14)
+from ads_extra21 import ad_puzzle  # noqa: E402  (2026-11-14)
 
-KINDS["ad_gift"] = ad_gift
+KINDS["ad_puzzle"] = ad_puzzle
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
