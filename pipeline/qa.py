@@ -45,7 +45,7 @@ def check(spec_path):
     if spec["type"] in ("ad_local_map", "ad_storefront", "ad_scale"):
         im = out / "image.jpg"
         if not im.exists() or Image.open(im).size != (1080, 1350): fail(errors, "image.jpg missing or wrong size")
-    if spec["type"] in ("carousel", "ad_journey", "ad_calendar", "ad_signpost", "ad_checklist", "ad_theater", "ad_receipt", "ad_radio", "ad_garden", "ad_lighthouse", "ad_keys", "ad_bricks", "ad_stamps", "ad_tailor"):
+    if spec["type"] in ("carousel", "ad_journey", "ad_calendar", "ad_signpost", "ad_checklist", "ad_theater", "ad_receipt", "ad_radio", "ad_garden", "ad_lighthouse", "ad_keys", "ad_bricks", "ad_stamps", "ad_tailor", "ad_gift"):
         imgs = sorted(out.glob("slide_*.jpg"))
         if not 2 <= len(imgs) <= 10:
             fail(errors, f"carousel needs 2–10 slides for API publishing, has {len(imgs)}")
