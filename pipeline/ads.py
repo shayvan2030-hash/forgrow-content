@@ -205,6 +205,9 @@ KINDS["ad_puzzle"] = ad_puzzle
 from ads_extra22 import ad_mirror  # noqa: E402  (2026-11-15)
 
 KINDS["ad_mirror"] = ad_mirror
+from ads_extra23 import ad_tincans  # noqa: E402  (2026-11-17)
+
+KINDS["ad_tincans"] = ad_tincans
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
