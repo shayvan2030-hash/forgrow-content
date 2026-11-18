@@ -208,6 +208,9 @@ KINDS["ad_mirror"] = ad_mirror
 from ads_extra23 import ad_tincans  # noqa: E402  (2026-11-17)
 
 KINDS["ad_tincans"] = ad_tincans
+from ads_extra24 import ad_kite  # noqa: E402  (2026-11-18)
+
+KINDS["ad_kite"] = ad_kite
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
