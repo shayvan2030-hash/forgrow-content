@@ -214,9 +214,9 @@ KINDS["ad_kite"] = ad_kite
 from ads_extra25 import ad_tickets  # noqa: E402  (2026-11-19)
 
 KINDS["ad_tickets"] = ad_tickets
-from ads_extra26 import ad_giftbox  # noqa: E402  (2026-11-20)
+from ads_extra26 import ad_heartjar  # noqa: E402  (2026-11-20)
 
-KINDS["ad_giftbox"] = ad_giftbox
+KINDS["ad_heartjar"] = ad_heartjar
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
