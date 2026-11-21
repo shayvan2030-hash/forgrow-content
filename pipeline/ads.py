@@ -217,6 +217,9 @@ KINDS["ad_tickets"] = ad_tickets
 from ads_extra26 import ad_heartjar  # noqa: E402  (2026-11-20)
 
 KINDS["ad_heartjar"] = ad_heartjar
+from ads_extra27 import ad_boardgame  # noqa: E402  (2026-11-21)
+
+KINDS["ad_boardgame"] = ad_boardgame
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
