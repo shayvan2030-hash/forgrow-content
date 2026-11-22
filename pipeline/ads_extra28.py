@@ -1,8 +1,8 @@
 """Extra ad layouts, set 28 (added 2026-11-22).
 
 ad_compass — carousel on a parchment map background with faint topographic contour lines: a hiking compass.
-          Business problem: a new business starts on Instagram from zero and tries to reach everyone at once —
-          trends, friends, anyone scrolling — so the needle keeps spinning and there is no clear direction.
+          Business problem: a new business starts on Instagram from zero and chases whatever brings quick numbers —
+          a trend, a giveaway, friends of friends — so the needle keeps spinning and there is no clear direction.
           A relevant audience gives one direction, from which a route can start
           (discover -> follow -> keep seeing -> understand the offer -> maybe reach out).
           Route shown as five numbered map pins. Illustration only. Original logo on a navy tile.
@@ -141,8 +141,8 @@ def scene(sc, w=940):
     if k == "many":
         g = f"<svg width='{w}' height='620' viewBox='0 0 {w} 620'>"
         cx, cy = 470, 320
-        targets = ((470, 50, "כולם"), (790, 140, "טרנדים"), (840, 410, "מי שגולל"),
-                   (640, 585, "חברים"), (290, 585, "מכל מקום"), (110, 410, "סתם סקרנים"), (150, 140, "כל מי שיראה"))
+        targets = ((470, 50, "טרנד"), (790, 140, "הגרלה"), (840, 410, "מכרים"),
+                   (640, 585, "משפחה"), (290, 585, "מכל מקום"), (110, 410, "סתם סקרנים"), (150, 140, "מה שמביא מספרים"))
         for tx, ty, txt in targets:
             a = math.atan2(ty - cy, tx - cx)
             g += arrow(cx + math.cos(a) * 160, cy + math.sin(a) * 160, tx - math.cos(a) * 70, ty - math.sin(a) * 52)
