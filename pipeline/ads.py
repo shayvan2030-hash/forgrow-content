@@ -223,6 +223,9 @@ KINDS["ad_boardgame"] = ad_boardgame
 from ads_extra28 import ad_compass  # noqa: E402  (2026-11-22)
 
 KINDS["ad_compass"] = ad_compass
+from ads_extra29 import ad_windows  # noqa: E402  (2026-11-23)
+
+KINDS["ad_windows"] = ad_windows
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
