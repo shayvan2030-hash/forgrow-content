@@ -226,6 +226,9 @@ KINDS["ad_compass"] = ad_compass
 from ads_extra29 import ad_windows  # noqa: E402  (2026-11-23)
 
 KINDS["ad_windows"] = ad_windows
+from ads_extra30 import ad_megaphone  # noqa: E402  (2026-11-23, replaces ad_windows for the day)
+
+KINDS["ad_megaphone"] = ad_megaphone
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
