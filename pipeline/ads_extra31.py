@@ -143,14 +143,19 @@ def stripes(end=False):
 
 
 def ad_boxes(spec):
+    return frame(spec, scene, stripes, BG)
+
+
+def frame(spec, scene, pattern, bgcol):
+    """Shared slide frame: progress bar, kicker/head/body, scene area, stamp, logo tile and the "המחשה" label."""
     slides = spec["slides"]; n = len(slides); out = []
-    bg = f"background:{BG}"
+    bg = f"background:{bgcol}"
     for i, s in enumerate(slides):
         dots = "".join(f"<i style='flex:1;height:6px;border-radius:3px;background:{MINT_D if k <= i else 'rgba(16,27,79,.15)'}'></i>"
                        for k in range(n))
         end = s.get("layout") == "end"
         wrap = (f"<style>.bg mark{{color:{MINT_D};background:none}}</style>"
-                f"<div class='bg' style='position:absolute;inset:0;overflow:hidden;color:{INK};{bg}'>{stripes(end)}")
+                f"<div class='bg' style='position:absolute;inset:0;overflow:hidden;color:{INK};{bg}'>{pattern(end)}")
         tl = f"<div style='background:{NAVY};border-radius:22px;padding:14px 22px;display:inline-flex'>{logo(52)}</div>"
         if end:
             body = wrap + f"""<div style='position:absolute;inset:0;padding:110px 90px;display:flex;flex-direction:column;justify-content:center;gap:40px'>
