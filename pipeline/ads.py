@@ -235,6 +235,9 @@ KINDS["ad_boxes"] = ad_boxes
 from ads_extra32 import ad_eggs  # noqa: E402  (2026-11-24, replaces ad_boxes for the day)
 
 KINDS["ad_eggs"] = ad_eggs
+from ads_extra33 import ad_hourglass  # noqa: E402  (2026-11-25)
+
+KINDS["ad_hourglass"] = ad_hourglass
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
