@@ -1,79 +1,23 @@
 """Extra ad layouts, set 36 (added 2026-11-27).
 
-ad_departures — carousel on a pale steel-blue background with faint dashed flight arcs: an airport-style split-flap
-          departures board. Business problem: a local business (fictional neighbourhood studio) gets lots of love for its
+ad_corkboard — carousel on a warm pinstriped wall: a cork pin-board with postcards that arrive from far away
+          (each with a heart and a postmark place), next to a small neighbourhood shop. Business problem: a local business (fictional neighbourhood studio) gets lots of love for its
           content, but most of the people who see it live far away and cannot actually come in. A relevant audience —
           people who can realistically become customers — can start a route (discover -> follow -> keep seeing ->
-          understand the offer -> maybe reach out), shown as five numbered flap rows. Illustration only.
+          understand the offer -> maybe reach out), shown as five numbered notes pinned on a cork strip. Illustration only.
           Original logo on a navy tile.
 """
 from ads_extra import NAVY
 from ads_extra28 import label, person, tag
 from ads_extra31 import frame, MINT, MINT_L, INK, MINT_D, SUB, GREY, GREY_D
 
-BG = "#E6ECF5"
-BOARD = "#1C2438"
-FLAP = "#2B3550"
-AMBER = "#F3C35B"
+BG = "#F4EEE6"
+CORK = "#D9B07E"
+CORK_D = "#B98A55"
+FRAME = "#8A5A33"
+POST = "#FFFDF7"
 RED = "#E8735A"
 BRICK = "#F2E6D8"
-
-
-def flap(x, y, w, h, txt, col=AMBER, size=None, fill=FLAP, dash=False):
-    """One split-flap tile: dark rounded tile, a hairline split across the middle, text centred."""
-    size = size or h * .55
-    d = f" stroke='{MINT}' stroke-width='3' stroke-dasharray='7 6'" if dash else ""
-    return (f"<rect x='{x:.1f}' y='{y:.1f}' width='{w:.1f}' height='{h:.1f}' rx='7' fill='{fill}'{d}/>"
-            f"<rect x='{x:.1f}' y='{y:.1f}' width='{w:.1f}' height='{h / 2:.1f}' rx='7' fill='#FFFFFF' opacity='.04'/>"
-            + label(x + w / 2, y + h / 2 + size * .36, txt, col, size, 800)
-            + f"<line x1='{x:.1f}' y1='{y + h / 2:.1f}' x2='{x + w:.1f}' y2='{y + h / 2:.1f}' stroke='{BOARD}' stroke-width='3'/>")
-
-
-def board(cx, y, w, rows, title, heads=("מאיפה", "מה עשו"), hl=None):
-    """Departures board. rows: list of (place, status). RTL: place column on the right."""
-    rh, gap, top = 62, 14, 112
-    h = top + len(rows) * (rh + gap) + 22
-    x = cx - w / 2
-    g = f"<rect x='{x + 14:.1f}' y='{y + 16:.1f}' width='{w:.1f}' height='{h:.1f}' rx='22' fill='{INK}' opacity='.14'/>"
-    g += f"<rect x='{x:.1f}' y='{y:.1f}' width='{w:.1f}' height='{h:.1f}' rx='22' fill='{BOARD}' stroke='{INK}' stroke-width='5'/>"
-    g += f"<line x1='{cx - w * .2:.1f}' y1='{y - 40:.1f}' x2='{cx - w * .2:.1f}' y2='{y:.1f}' stroke='{INK}' stroke-width='6'/>"
-    g += f"<line x1='{cx + w * .2:.1f}' y1='{y - 40:.1f}' x2='{cx + w * .2:.1f}' y2='{y:.1f}' stroke='{INK}' stroke-width='6'/>"
-    g += plane(x + w - 52, y + 42, .55, 0, "#FFFFFF")
-    g += f"<text x='{x + w - 96:.1f}' y='{y + 54:.1f}' font-family='Heebo' font-weight='900' font-size='36' text-anchor='start' fill='#FFFFFF' direction='rtl'>{title}</text>"
-    pw, sw = w * .58, w * .32
-    px = x + w - 24 - pw
-    sx = x + 24
-    g += f"<text x='{px + pw - 6:.1f}' y='{y + 96:.1f}' font-family='Heebo' font-weight='700' font-size='22' text-anchor='start' fill='#AEB6CF' direction='rtl'>{heads[0]}</text>"
-    g += f"<text x='{sx + sw - 6:.1f}' y='{y + 96:.1f}' font-family='Heebo' font-weight='700' font-size='22' text-anchor='start' fill='#AEB6CF' direction='rtl'>{heads[1]}</text>"
-    for i, (pl, stt) in enumerate(rows):
-        ry = y + top + i * (rh + gap)
-        c = MINT if hl is not None and i in hl else AMBER
-        g += flap(px, ry, pw, rh, pl, c, 34)
-        g += flap(sx, ry, sw, rh, stt, c, 32)
-    return g
-
-
-def plane(cx, cy, s=1.0, ang=0, col="#FFFFFF", stroke=INK, op=1):
-    """Side-view-ish plane silhouette pointing left (= forward in RTL reading), centred at cx, cy."""
-    return (f"<g transform='translate({cx:.1f} {cy:.1f}) rotate({ang}) scale({s:.2f})' opacity='{op}'>"
-            f"<path d='M -62,0 C -62,-10 -48,-14 -36,-14 L 46,-14 L 64,-38 L 76,-38 L 68,-12 C 74,-8 74,8 68,10 L 46,14 L -36,14 C -48,14 -62,10 -62,0 Z' "
-            f"fill='{col}' stroke='{stroke}' stroke-width='5' stroke-linejoin='round'/>"
-            f"<path d='M 4,4 L 28,44 L 42,44 L 32,4 Z' fill='{col}' stroke='{stroke}' stroke-width='5' stroke-linejoin='round'/>"
-            f"<path d='M 6,-6 L 26,-34 L 38,-34 L 30,-6 Z' fill='{col}' stroke='{stroke}' stroke-width='4' stroke-linejoin='round' opacity='.85'/>"
-            f"<circle cx='-40' cy='-2' r='4' fill='{stroke}'/><circle cx='-26' cy='-2' r='4' fill='{stroke}'/><circle cx='-12' cy='-2' r='4' fill='{stroke}'/></g>")
-
-
-def traveller(cx, by, h, op=.9):
-    """Grey dashed person pulling a small suitcase."""
-    g = person(cx, by, h, GREY, op=op, dash=True)
-    sw, sh = h * .3, h * .36
-    sx = cx + h * .34
-    g += (f"<g opacity='{op}'><line x1='{sx + sw * .5:.1f}' y1='{by - sh - 4:.1f}' x2='{cx + h * .26:.1f}' y2='{by - h * .4:.1f}' stroke='{INK}' stroke-width='4'/>"
-          f"<rect x='{sx:.1f}' y='{by - sh - 8:.1f}' width='{sw:.1f}' height='{sh:.1f}' rx='8' fill='#FFFFFF' stroke='{INK}' stroke-width='4' stroke-dasharray='7 6'/>"
-          f"<line x1='{sx + sw * .35:.1f}' y1='{by - sh:.1f}' x2='{sx + sw * .35:.1f}' y2='{by - 16:.1f}' stroke='{GREY_D}' stroke-width='3'/>"
-          f"<line x1='{sx + sw * .65:.1f}' y1='{by - sh:.1f}' x2='{sx + sw * .65:.1f}' y2='{by - 16:.1f}' stroke='{GREY_D}' stroke-width='3'/>"
-          f"<circle cx='{sx + 8:.1f}' cy='{by - 4:.1f}' r='5' fill='{INK}'/><circle cx='{sx + sw - 8:.1f}' cy='{by - 4:.1f}' r='5' fill='{INK}'/></g>")
-    return g
 
 
 def shop(cx, by, w, sign="הסטודיו", awn=MINT, door_open=False, op=1):
@@ -103,37 +47,99 @@ def shop(cx, by, w, sign="הסטודיו", awn=MINT, door_open=False, op=1):
     return g + "</g>"
 
 
+def pushpin(cx, cy, col=RED, r=13):
+    return (f"<ellipse cx='{cx + 6:.1f}' cy='{cy + 10:.1f}' rx='{r:.1f}' ry='{r * .5:.1f}' fill='{INK}' opacity='.18'/>"
+            f"<circle cx='{cx:.1f}' cy='{cy:.1f}' r='{r:.1f}' fill='{col}' stroke='{INK}' stroke-width='3.5'/>"
+            f"<circle cx='{cx - r * .35:.1f}' cy='{cy - r * .35:.1f}' r='{r * .3:.1f}' fill='#FFFFFF' opacity='.7'/>")
+
+
+def heart(cx, cy, s=1.0, fill=RED):
+    return (f"<path transform='translate({cx:.1f} {cy:.1f}) scale({s:.2f})' d='M 0,14 C -26,-4 -18,-26 0,-14 C 18,-26 26,-4 0,14 Z' "
+            f"fill='{fill}' stroke='{INK}' stroke-width='3.5' stroke-linejoin='round'/>")
+
+
+def postcard(cx, cy, w, place, ang=0, pin_col=RED, grey=False, op=1):
+    """Postcard: picture half with a heart on the left, address lines + stamp + round postmark (place) on the right."""
+    h = w * .64
+    x, y = -w / 2, -h / 2
+    edge = GREY_D if grey else INK
+    d = " stroke-dasharray='8 6'" if grey else ""
+    g = f"<g transform='translate({cx:.1f} {cy:.1f}) rotate({ang})' opacity='{op}'>"
+    g += f"<rect x='{x + 8:.1f}' y='{y + 10:.1f}' width='{w:.1f}' height='{h:.1f}' rx='6' fill='{INK}' opacity='.12'/>"
+    g += f"<rect x='{x:.1f}' y='{y:.1f}' width='{w:.1f}' height='{h:.1f}' rx='6' fill='{POST}' stroke='{edge}' stroke-width='4'{d}/>"
+    g += f"<rect x='{x + 12:.1f}' y='{y + 12:.1f}' width='{w * .42:.1f}' height='{h - 24:.1f}' rx='4' fill='{'#E4E6EE' if grey else '#DDE7F7'}'/>"
+    g += heart(x + 12 + w * .21, 6, w / 260, GREY if grey else RED)
+    g += f"<line x1='{x + w * .5:.1f}' y1='{y + 16:.1f}' x2='{x + w * .5:.1f}' y2='{y + h - 16:.1f}' stroke='{edge}' stroke-width='2' opacity='.5'/>"
+    sx = x + w - 14 - w * .16
+    g += f"<rect x='{sx:.1f}' y='{y + 14:.1f}' width='{w * .16:.1f}' height='{w * .19:.1f}' fill='{MINT_L if not grey else '#ECEDF2'}' stroke='{edge}' stroke-width='2.5' stroke-dasharray='4 3'/>"
+    for k in range(3):
+        ly = y + h * .55 + k * h * .14
+        g += f"<line x1='{x + w * .56:.1f}' y1='{ly:.1f}' x2='{x + w - 16:.1f}' y2='{ly:.1f}' stroke='{edge}' stroke-width='2' opacity='.35'/>"
+    fs = max(18, w * .085)
+    fs = min(fs, (w * .38) / max(1, len(place) * .55))
+    px0, py0 = x + w * .6, y + h * .26
+    for k in range(3):
+        yy = py0 + k * 10
+        g += (f"<path d='M {px0:.1f},{yy:.1f} q 8,-6 16,0 t 16,0 t 16,0 t 16,0' fill='none' stroke='{SUB}' stroke-width='2.5' opacity='.6'/>")
+    g += (f"<rect x='{x + w * .54:.1f}' y='{y + h * .5 - fs * .1:.1f}' width='{w * .42:.1f}' height='{fs * 1.5:.1f}' rx='6' fill='{'#FFFFFF' if grey else NAVY}'/>"
+          + label(x + w * .75, y + h * .5 + fs * 1.0, place, GREY_D if grey else "#FFFFFF", fs))
+    if pin_col:
+        g += pushpin(0, y + 6, pin_col)
+    return g + "</g>"
+
+
+def corkboard(x, y, w, h):
+    g = f"<rect x='{x + 14:.1f}' y='{y + 16:.1f}' width='{w:.1f}' height='{h:.1f}' rx='14' fill='{INK}' opacity='.14'/>"
+    g += f"<rect x='{x:.1f}' y='{y:.1f}' width='{w:.1f}' height='{h:.1f}' rx='14' fill='{FRAME}' stroke='{INK}' stroke-width='5'/>"
+    g += f"<rect x='{x + 18:.1f}' y='{y + 18:.1f}' width='{w - 36:.1f}' height='{h - 36:.1f}' rx='6' fill='{CORK}' stroke='{INK}' stroke-width='3'/>"
+    import random
+    rnd = random.Random(7)
+    for _ in range(int(w * h / 1400)):
+        px, py = x + 24 + rnd.random() * (w - 48), y + 24 + rnd.random() * (h - 48)
+        g += f"<circle cx='{px:.1f}' cy='{py:.1f}' r='{1.5 + rnd.random() * 2:.1f}' fill='{CORK_D}' opacity='.7'/>"
+    return g
+
+
+def note(cx, cy, txt, ang=-3, w=330, fill="#FFFFFF", col=INK, size=36):
+    return (f"<g transform='rotate({ang} {cx:.1f} {cy:.1f})'><rect x='{cx - w / 2 + 6:.1f}' y='{cy - 36:.1f}' width='{w:.1f}' height='72' fill='{INK}' opacity='.12'/>"
+            f"<rect x='{cx - w / 2:.1f}' y='{cy - 42:.1f}' width='{w:.1f}' height='72' fill='{fill}' stroke='{INK}' stroke-width='3.5'/>"
+            + label(cx, cy + 6, txt, col, size) + pushpin(cx, cy - 42, MINT) + "</g>")
+
+
 def scene(sc, w=940):
     k = sc["kind"]
     if k == "intro":
         g = f"<svg width='{w}' height='720' viewBox='0 0 {w} 720'>"
-        g += board(470, 50, 860, [("עיר אחרת", "לייק"), ("חו״ל", "לייק"), ("שעתיים נסיעה", "שמירה"), ("הצד השני של הארץ", "לייק")],
-                   "מאיפה העוקבים?")
-        g += f"<ellipse cx='470' cy='700' rx='430' ry='16' fill='{INK}' opacity='.07'/>"
-        g += shop(720, 700, 250)
-        g += f"<path d='M 90,700 Q 200,660 300,600' fill='none' stroke='{GREY_D}' stroke-width='5' stroke-dasharray='4 14' stroke-linecap='round'/>"
-        g += plane(350, 580, .9, -28)
+        g += corkboard(40, 20, 860, 470)
+        g += note(470, 92, "מאיפה העוקבים?", -2, 380)
+        for cx, cy, pl, ang, pc in ((735, 230, "עיר אחרת", 5, RED), (470, 250, "חו״ל", -4, MINT), (210, 230, "רחוק", 3, "#8799DB"),
+                                    (600, 390, "בצד השני", -3, "#F3C35B"), (300, 395, "שעה נסיעה", 4, RED)):
+            g += postcard(cx, cy, 230, pl, ang, pc)
+        g += f"<ellipse cx='470' cy='705' rx='430' ry='14' fill='{INK}' opacity='.07'/>"
+        g += shop(470, 705, 220)
         return g + "</svg>"
     if k == "away":
         g = f"<svg width='{w}' height='700' viewBox='0 0 {w} 700'>"
         g += f"<ellipse cx='470' cy='660' rx='440' ry='20' fill='{INK}' opacity='.07'/>"
-        g += shop(780, 660, 250)
-        g += (f"<circle cx='890' cy='290' r='42' fill='#FFFFFF' stroke='{GREY_D}' stroke-width='4'/>"
-              + label(890, 306, "?", GREY_D, 48))
-        for x, h, op in ((500, 200, .9), (300, 180, .8), (110, 160, .7)):
-            g += traveller(x, 660, h, op)
-        g += f"<path d='M 560,250 Q 300,120 90,180' fill='none' stroke='{GREY_D}' stroke-width='5' stroke-dasharray='4 14' stroke-linecap='round'/>"
-        g += plane(110, 170, .8, -8, "#FFFFFF")
-        g += tag(330, 300, "אוהבים מרחוק", "#FFFFFF", GREY_D, 34)
+        g += shop(760, 660, 280)
+        g += (f"<circle cx='890' cy='300' r='42' fill='#FFFFFF' stroke='{GREY_D}' stroke-width='4'/>"
+              + label(890, 316, "?", GREY_D, 48))
+        for (x1, y1, qx, qy) in ((60, 120, 300, 40), (40, 330, 300, 250), (80, 560, 330, 430)):
+            g += f"<path d='M {x1},{y1} Q {qx},{qy} 600,440' fill='none' stroke='{GREY_D}' stroke-width='4' stroke-dasharray='4 14' stroke-linecap='round'/>"
+        for cx, cy, pl, ang in ((250, 120, "עיר אחרת", -8), (150, 330, "חו״ל", 6), (290, 520, "רחוק", -5)):
+            g += postcard(cx, cy, 200, pl, ang, None)
+        g += tag(470, 610, "אוהבים מרחוק", "#FFFFFF", GREY_D, 32)
         return g + "</svg>"
     if k == "split":
         g = f"<svg width='{w}' height='800' viewBox='0 0 {w} 800'>"
         g += f"<line x1='470' y1='20' x2='470' y2='640' stroke='{INK}' stroke-width='3' stroke-dasharray='12 12' opacity='.3'/>"
-        # right (read first): far away, can't come in
-        g += plane(720, 170, 1.1, -14)
-        g += f"<path d='M 880,330 Q 800,260 760,210' fill='none' stroke='{GREY_D}' stroke-width='5' stroke-dasharray='4 14' stroke-linecap='round'/>"
-        g += traveller(760, 630, 230)
-        g += traveller(560, 630, 190, .75)
+        # right (read first): far away — a pile of postcards, tiny dashed figures on a far horizon
+        g += f"<path d='M 500,250 Q 700,220 930,250' fill='none' stroke='{GREY_D}' stroke-width='3' opacity='.5'/>"
+        for x in (590, 680, 770, 860):
+            g += person(x, 250, 70, GREY, op=.8, dash=True)
+        g += f"<path d='M 705,290 L 705,340' stroke='{GREY_D}' stroke-width='4' stroke-dasharray='4 10' stroke-linecap='round'/>"
+        for cx, cy, pl, ang in ((660, 450, "חו״ל", -10), (740, 430, "רחוק", 6), (705, 490, "עיר אחרת", -2)):
+            g += postcard(cx, cy, 220, pl, ang, None, grey=True)
         g += label(705, 700, "רחוק מדי להגיע", INK, 34) + label(705, 746, "נהנים מהתוכן, ונשארים שם", SUB, 27)
         # left: people who can actually come in
         g += shop(260, 600, 260, door_open=True)
@@ -142,22 +148,21 @@ def scene(sc, w=940):
         return g + "</svg>"
     if k == "route":
         labels = sc["labels"]; n = len(labels); rows = ""
+        pins = [RED, MINT, "#8799DB", "#F3C35B", MINT]
         for i, l in enumerate(labels):
             last = i == n - 1
-            num = (f"<span style='flex:none;width:66px;height:66px;border-radius:8px;background:{FLAP};"
-                   f"border:3px {'dashed' if last else 'solid'} {MINT if last else FLAP};display:flex;align-items:center;justify-content:center;"
-                   f"font-size:34px;font-weight:900;color:{MINT};position:relative'>{i + 1}"
-                   f"<i style='position:absolute;left:0;right:0;top:50%;height:3px;background:{BOARD}'></i></span>")
-            txt = (f"<span style='flex:1;height:66px;border-radius:8px;background:{FLAP};display:flex;align-items:center;padding:0 24px;"
-                   f"font-size:40px;font-weight:800;color:{'#AEB6CF' if last else '#FFFFFF'};position:relative;"
-                   f"{'border:3px dashed ' + MINT + ';' if last else ''}'>{l}"
-                   f"<i style='position:absolute;left:0;right:0;top:50%;height:3px;background:{BOARD}'></i></span>")
-            rows += f"<div style='display:flex;align-items:center;gap:14px'>{num}{txt}</div>"
-        return (f"<div style='width:860px;background:{BOARD};border:6px solid {INK};border-radius:22px;overflow:hidden;"
+            rot = (-.8, .7, -.5, .8, -.6)[i % 5]
+            rows += (f"<div style='position:relative;display:flex;align-items:center;gap:22px;background:{'#FFFFFF' if not last else POST};"
+                     f"border:3.5px {'dashed' if last else 'solid'} {MINT_D if last else INK};padding:6px 26px;transform:rotate({rot}deg);"
+                     f"box-shadow:6px 8px 0 rgba(16,27,79,.15)'>"
+                     f"<span style='position:absolute;top:-12px;right:50%;width:24px;height:24px;border-radius:50%;background:{pins[i]};border:3px solid {INK}'></span>"
+                     f"<span style='flex:none;width:58px;height:58px;border-radius:50%;background:{INK if not last else '#FFFFFF'};"
+                     f"border:3px solid {INK};display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900;"
+                     f"color:{'#FFFFFF' if not last else INK}'>{i + 1}</span>"
+                     f"<span style='font-size:40px;font-weight:900;color:{SUB if last else INK}'>{l}</span></div>")
+        return (f"<div style='width:860px;background:{FRAME};border:5px solid {INK};border-radius:16px;padding:18px;"
                 f"box-shadow:14px 16px 0 rgba(16,27,79,.14)'>"
-                f"<div style='color:#fff;font-size:34px;font-weight:900;padding:24px 34px 8px;display:flex;align-items:center;gap:18px'>"
-                f"<span style='width:18px;height:18px;border-radius:50%;background:{MINT};flex:none'></span>שלב אחרי שלב, לאורך זמן</div>"
-                f"<div style='padding:14px 30px 30px;display:flex;flex-direction:column;gap:14px'>{rows}</div></div>")
+                f"<div style='background:{CORK};border:3px solid {INK};border-radius:6px;padding:34px 40px 34px;display:flex;flex-direction:column;gap:44px'>{rows}</div></div>")
     if k == "one":
         g = f"<svg width='{w}' height='620' viewBox='0 0 {w} 620'>"
         g += f"<ellipse cx='470' cy='590' rx='420' ry='20' fill='{INK}' opacity='.07'/>"
@@ -168,13 +173,10 @@ def scene(sc, w=940):
     return ""
 
 
-def arcs(end=False):
-    g = (f"<svg width='1080' height='1350' viewBox='0 0 1080 1350' style='position:absolute;inset:0;opacity:{.35 if end else .55}'>")
-    for (x1, y1, qx, qy, x2, y2) in ((-40, 420, 540, 120, 1120, 360), (-40, 980, 400, 700, 1120, 880), (-40, 1300, 620, 1080, 1120, 1240)):
-        g += (f"<path d='M {x1},{y1} Q {qx},{qy} {x2},{y2}' fill='none' stroke='#8799DB' stroke-width='3' "
-              f"stroke-dasharray='6 16' stroke-linecap='round'/>")
-    return g + "</svg>"
+def pinstripes(end=False):
+    lines = "".join(f"<line x1='{x}' y1='0' x2='{x}' y2='1350' stroke='#E6D9C6' stroke-width='3'/>" for x in range(18, 1080, 36))
+    return (f"<svg width='1080' height='1350' viewBox='0 0 1080 1350' style='position:absolute;inset:0;opacity:{.5 if end else .9}'>{lines}</svg>")
 
 
-def ad_departures(spec):
-    return frame(spec, scene, arcs, BG)
+def ad_corkboard(spec):
+    return frame(spec, scene, pinstripes, BG)

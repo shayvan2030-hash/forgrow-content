@@ -244,9 +244,9 @@ KINDS["ad_merrygoround"] = ad_merrygoround
 from ads_extra35 import ad_manual  # noqa: E402  (2026-11-26, replaces ad_merrygoround for the day)
 
 KINDS["ad_manual"] = ad_manual
-from ads_extra36 import ad_departures  # noqa: E402  (2026-11-27)
+from ads_extra36 import ad_corkboard  # noqa: E402  (2026-11-27)
 
-KINDS["ad_departures"] = ad_departures
+KINDS["ad_corkboard"] = ad_corkboard
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
