@@ -247,6 +247,9 @@ KINDS["ad_manual"] = ad_manual
 from ads_extra36 import ad_corkboard  # noqa: E402  (2026-11-27)
 
 KINDS["ad_corkboard"] = ad_corkboard
+from ads_extra37 import ad_dough  # noqa: E402  (2026-11-28)
+
+KINDS["ad_dough"] = ad_dough
 VIDEO_KINDS = {"ad_shape_video": ad_shape_video, "ad_spotlight": ad_spotlight}
 
 
